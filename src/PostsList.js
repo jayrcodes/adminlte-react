@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function PostsList({ posts }) {
   const emptyMessage = (
@@ -19,7 +20,7 @@ export default function PostsList({ posts }) {
 } // end of PostsList
 
 PostsList.propTypes = {
-  posts: React.PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired
 }
 
 

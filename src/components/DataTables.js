@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import DataTable from '../wrappers/DataTable';
+import { connect } from 'react-redux';
+import { fetchPosts } from '../actions/fetchPosts';
 
 class DataTables extends Component {
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
+
   render() {
     return (
       <div className="content-wrapper">
@@ -27,7 +34,7 @@ class DataTables extends Component {
                   </div>
 
                   <div className="box-body">
-                    <DataTable />
+                    <DataTable posts={this.props.posts}/>
                   </div>
 
                 </div>
@@ -42,5 +49,16 @@ class DataTables extends Component {
   }
 }
 
-export default DataTables;
+DataTables.propTypes = {
+  posts: PropTypes.array.isRequired,
+  fetchPosts: PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts
+  };
+}
+
+export default connect(mapStateToProps, { fetchPosts })(DataTables);
 

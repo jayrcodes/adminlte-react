@@ -3,10 +3,6 @@ import $ from 'jquery';
 import Chart from 'admin-lte/plugins/chartjs/Chart.js';
 
 class ChartWrapper extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
-
   componentDidMount() {
     /* ChartJS
 		 * -------

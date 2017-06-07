@@ -39,6 +39,9 @@ class Sidebar extends Component {
             <NavLink to="/tables">
               <i className="fa fa-th"></i> <span>DataTables</span>
             </NavLink>
+            <NavLink to="/playground">
+              <i className="fa fa-th"></i> <span>Playground</span>
+            </NavLink>
           </ul>
         </section>
 

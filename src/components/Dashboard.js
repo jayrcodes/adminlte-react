@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ChartWrapper from '../wrappers/ChartWrapper';
 import { connect } from 'react-redux';
 import PostsList from '../PostsList';
@@ -13,9 +14,9 @@ class Dashboard extends Component {
 		const infoBoxes = [
       {
         logo: 'ion ion-ios-gear-outline',
-        text: 'CPU Traffic',
+        text: 'Posts',
         color: 'info-box-icon bg-aqua',
-        value: '90%'
+        value: this.props.posts.length
       },
       {
         logo: 'fa fa-google-plus',
@@ -69,10 +70,6 @@ class Dashboard extends Component {
         </section>
 
         <section className="content">
-
-          <div className="row">
-            <PostsList posts={this.props.posts}/>
-          </div>
 
           <div className="row">
             {mappedInfoBoxes}
@@ -209,6 +206,9 @@ class Dashboard extends Component {
 
           </div>
 
+          <div className="row">
+            <PostsList posts={this.props.posts}/>
+          </div>
 
         </section>
 
@@ -218,8 +218,8 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  posts: React.PropTypes.array.isRequired,
-  fetchPosts: React.PropTypes.func.isRequired
+  posts: PropTypes.array.isRequired,
+  fetchPosts: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {

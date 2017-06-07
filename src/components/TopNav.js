@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import user2Img from 'admin-lte/dist/img/user2-160x160.jpg';
 
 class TopNav extends Component {
@@ -7,12 +7,12 @@ class TopNav extends Component {
     return (
       <header className="main-header">
 
-        <a href="../../index2.html" className="logo">
+        <Link to="/" className="logo">
 
           <span className="logo-mini"><b>A</b>LT</span>
 
           <span className="logo-lg"><b>Admin</b>LTE</span>
-        </a>
+        </Link>
 
         <nav className="navbar navbar-static-top">
 
