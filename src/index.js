@@ -1,29 +1,44 @@
 import './Vendor';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 
-import Dashboard from './components/Dashboard';
-import DataTables from './components/DataTables';
-import TopNav from './components/TopNav';
-import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
+import {BrowserRouter} from 'react-router-dom';
+
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './rootReducer';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+/*eslint-disable */
+let config = {
+	apiKey: "AIzaSyB6Jcb0xN-a4bNqWogsn9--0X2LlObWNws",
+	authDomain: "reactapp-507d9.firebaseapp.com",
+	databaseURL: "https://reactapp-507d9.firebaseio.com",
+	projectId: "reactapp-507d9",
+	storageBucket: "reactapp-507d9.appspot.com",
+	messagingSenderId: "495328783043"
+};
+firebase.initializeApp(config);
+/*eslint-enable */
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(thunk)
+  )
+);
 
 ReactDOM.render(
-  <Router>
-    <div>
-      <TopNav />
-
-      <Route exact path="/" component={Dashboard}/>
-      <Route path="/tables" component={DataTables}/>
-
-      <Sidebar />
-      <Footer />
-    </div>
-  </Router>
+  <BrowserRouter>
+    <Provider store={store}>
+      <App/>
+    </Provider>
+  </BrowserRouter>
 , document.getElementById('root'));
 registerServiceWorker();
 

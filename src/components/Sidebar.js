@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
+import NavLink from '../wrappers/NavLink';
 import user2Img from 'admin-lte/dist/img/user2-160x160.jpg';
 
 class Sidebar extends Component {
@@ -32,16 +33,12 @@ class Sidebar extends Component {
 
           <ul className="sidebar-menu" data-widget="tree">
             <li className="header">MAIN NAVIGATION</li>
-            <li>
-              <NavLink to="/">
-                <i className="fa fa-th"></i> <span>Dasbhoard</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/tables">
-                <i className="fa fa-th"></i> <span>DataTables</span>
-              </NavLink>
-            </li>
+            <NavLink to="/">
+              <i className="fa fa-th"></i> <span>Dasbhoard</span>
+            </NavLink>
+            <NavLink to="/tables">
+              <i className="fa fa-th"></i> <span>DataTables</span>
+            </NavLink>
           </ul>
         </section>
 

@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import ChartWrapper from '../wrappers/ChartWrapper';
+import { connect } from 'react-redux';
+import PostsList from '../PostsList';
+import { fetchPosts } from '../actions/fetchPosts';
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
 
   render() {
 		const infoBoxes = [
@@ -63,6 +69,10 @@ class Dashboard extends Component {
         </section>
 
         <section className="content">
+
+          <div className="row">
+            <PostsList posts={this.props.posts}/>
+          </div>
 
           <div className="row">
             {mappedInfoBoxes}
@@ -207,4 +217,16 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+  posts: React.PropTypes.array.isRequired,
+  fetchPosts: React.PropTypes.func.isRequired
+}
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts
+  };
+}
+
+export default connect(mapStateToProps, { fetchPosts })(Dashboard);
+
